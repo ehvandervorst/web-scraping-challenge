@@ -32,15 +32,16 @@ def scrape():
     time.sleep(3)
     html = browser.html
     jpl_soup = BeautifulSoup(html, 'html.parser')
-    image = jpl_soup.find_all('img')[3]["src"]
-    image_url = base_url + image
+    image = jpl_soup.find('div',class_='carousel_items')('article')[0]['style'].\
+        replace('background-image: url(','').replace(');','')[1:-1]
+    feature_image_url = base_url + image
 
 #Mars facts
     facts_url = "https://space-facts.com/mars/"
     tables = pd.read_html(facts_url)
     facts_df = tables[0]
     facts_df.columns = ['Description', 'Value']
-    facts_html = facts_df.to_html()
+    facts_html = facts_df.to_html(index=False)
 
 #Mars Hemisphere images
     usgs_url = 'https://astrogeology.usgs.gov'
@@ -77,7 +78,7 @@ def scrape():
     mars_dict = {
         "news_title": news_title,
         "news_paragraph": news_paragraph,
-        "featured_image": image_url,
+        "featured_image": feature_image_url,
         "mars_facts": facts_html,
         "hemisphere_images": hemisphere_image_urls
     }

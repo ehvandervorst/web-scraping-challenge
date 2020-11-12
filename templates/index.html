@@ -2,76 +2,122 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Mission to Mars</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  
+    <meta charset="UTF-8">
+    <title>Mission to Mars</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <style>
+        h1 {
+            color:   #ffffff;
+            font-size: 50px;
+            font-weight: bold;
+        }
+        
+        h2 {
+            color:   #ffffff;
+            font-size: 30px;
+            text-align: left;
+        }
+
+        h3 {
+            color:#ffffff;
+            font-size: 18px;
+            text-align: left;
+        }
+
+        h4 {
+            color:#ffffff;
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        p{
+          font-family: Lato, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+          font-size: large;
+          padding: 10px;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100%;
+            background-color: #999593;
+        }
+
+        .btn-primary {
+            color: #fff;
+            background-color:#1c1a1a;
+            border-color: #1c1a1a;
+            }
+
+        .jumbotron {
+            background-color:#ad5f34;
+        }
+
+        img {
+            width: 100%;
+        }
+
+
+      </style>
 </head>
 
-<body>
-  <div class="container">
 
-    <div class="jumbotron text-center border-bottom">
-      <h1 class="font-weight-bold">Mission to Mars</h1>
-      <p><a class="btn btn-primary btn-lg" href="../scrape" role="button">Scrape New Data</a></p>
-    </div>
-
-    <div class="row">
-      <div class="col-md-12">
-        <h2><u>Latest Mars News</u></h2>
-      </div>
-    </div>
-  </br>
-    <div class="row">
-      <div class="col-md-12">
-        <h4>{{mars.news_title}}</h4>
-        <p>{{mars.news_paragraph}}</p>
-      </div>
-    </div>
-  <hr>
-    <div class="row">
-      <div class="col-md-8 border">
-        <h2 class=""><u>Featured Mars Image</u></h2> 
-        </br>
-        <img src="{{mars.featured_image}}" alt="Featured Mars Image">
-      </div>
-      <div class="col-md-4">
-        <div class="border">
-          <h5>Mars Facts</h5>
-            {{ mars.mars_facts | safe }}
+<body >
+    
+    <div  class="container">
+        <div class="jumbotron text-center">
+            <h1>Mission to Mars</h1>
+            <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
         </div>
-      </div>
-    </div>
-  <hr>
-    <div class="row">
-      <div class="col-md-8 offset-4">
-        <h2 class="align-items-center"><u>Mars hemispheres</u></h2>  
-      </div>
-    </div>
-    </br>
-    <div class="row">       
-            {% for hemisphere in mars.hemisphere_images %} 
-              <div class="col-6 border">
-              </br>
-                    <div>
-                      <img width="512 px" height="512 px" src="{{ hemisphere.img_url | safe }}">
-                    </div>
-
-                    <div>
-                      <h4> {{ hemisphere.title | safe }} </h4>  
-                    </div>
-            
-              </div>
+        <div class="row">
+            <div class="col col-12">
+                <h2>Latest Mars News</h2>
+                <br>
+                <h3>{{mars_info.news_title}}</h3>
+                <p>{{mars_info.news_paragraph}}</p>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-8">
+                <h2>Featured Mars Image</h2>
+                <img src={{mars_info.featured_image}} alt="Featured image">
+            </div>
+            <div class="col col-4">
+                <h2>Mars Facts</h2>
+                {{mars_info.mars_facts | safe}}
+            </div>
+        </div>
+        <br><br>
+        <div class="row">
+            <div class="col col-12">
+                <h4>Mars Hemispheres</h4>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            {% for hemisphere in mars_info.hemisphere_images %}
+            <div class="col col-6">
+                <div class="boxmargin">
+                    <img src={{hemisphere.img_url}} alt={{hemisphere.img_url}}>
+                    <h3>{{hemisphere.title}}</h3>
+                </div>
+            </div>
             {% endfor %}
-    </div> 
-
-  <hr>
-  
+        </div>
+    </div> <!-- End of container -->
 </body>
 
 </html>
